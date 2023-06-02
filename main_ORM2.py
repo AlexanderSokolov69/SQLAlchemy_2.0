@@ -11,7 +11,7 @@ from metods.datein import DateIn
 if __name__ == '__main__':
     sa_version = sa.__version__.split('.')
     print(sa_version)
-    engine = sa.create_engine("sqlite+pysqlite:///db/database_J2023_1.db", echo=True, future=True)
+    engine = sa.create_engine("sqlite+pysqlite:///db/database_J2023_2.db", echo=True, future=True)
     # engine = sa.create_engine(
     #     "mssql+pyodbc://sa:Prestige2011!@172.16.1.12:1433/Journal4303?driver=ODBC+Driver+17+for+SQL+Server",
     #     echo=True, future=True
@@ -33,7 +33,15 @@ if __name__ == '__main__':
     #     )
     #     print(result.all())
 
-    users = Table("users", metadata_obj, autoload_with=engine)
+    users_data = Table("users", metadata_obj, autoload_with=engine)
+
+    Base = declarative_base()
+
+    class Users(Base):
+        __tablename__ = users_data
+
+
+    users = Users()
 
     with engine.connect() as conn:
         result = conn.execute(
