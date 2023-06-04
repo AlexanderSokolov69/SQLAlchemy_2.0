@@ -32,7 +32,6 @@ with open("config_srv.json", "r", encoding="utf-8") as f:
     config_srv = json.load(f)
 
 session = init_db(config_srv.get("connect_str"))
-
 app = Flask(__name__)
 app.config['SECRET_KEY'] = config_srv.get("secret_key")
 bootstrap = Bootstrap5(app)
@@ -56,7 +55,12 @@ def not_found(error):
 def base():
     return render_template("dot.html")
 
-
+@app.route('/base')
+def table_view():
+    result = session.execute(
+        select(Users)
+    ).all()
+    return render_template("table_view.html", table=result)
 # ----------------------------------------------
 
 
