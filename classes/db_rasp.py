@@ -3,7 +3,7 @@ from sqlalchemy import Date, insert
 from sqlalchemy.orm import Mapped, relationship
 from datetime import date
 
-from db_base import Base
+from .db_base import Base
 
 
 class Rasp(Base):
@@ -19,9 +19,9 @@ class Rasp(Base):
                'idDays': 'ID Дня'
                }
     id: Mapped[int] = Column(Integer(), primary_key=True, autoincrement=True)
-    idGroups: Mapped[int] = Column(Integer(), ForeignKey("groups.id"))
-    idKabs: Mapped[int] = Column(Integer(), ForeignKey("kabs.id"))
-    idDays: Mapped[int] = Column(Integer(), ForeignKey("days.id"))
+    idGroups: Mapped[int] = Column(ForeignKey("groups.id"))
+    idKabs: Mapped[int] = Column(ForeignKey("kabs.id"))
+    idDays: Mapped[int] = Column(ForeignKey("days.id"))
     tstart: Mapped[str] = Column(String(5), nullable=True)
     tend: Mapped[str] = Column(String(5), nullable=True)
     comment: Mapped[str] = Column(String(100), nullable=True)

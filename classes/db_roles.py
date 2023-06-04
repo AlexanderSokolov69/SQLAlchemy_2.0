@@ -3,7 +3,7 @@ from sqlalchemy import Date, insert
 from sqlalchemy.orm import Mapped, relationship
 from datetime import date, datetime
 
-from db_base import Base
+from .db_base import Base
 
 
 class Roles(Base):
@@ -16,7 +16,7 @@ class Roles(Base):
                }
 
     id: Mapped[int] = Column(Integer(), primary_key=True, autoincrement=True)
-    idPriv: Mapped[int] = Column(Integer(), ForeignKey("priv.id"))
+    idPriv: Mapped[int] = Column(ForeignKey("priv.id"))
     name: Mapped[str] = Column(String(200), nullable=True)
     comment: Mapped[str] = Column(String(100), nullable=True)
 

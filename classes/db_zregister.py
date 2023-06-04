@@ -3,7 +3,7 @@ from sqlalchemy import Date, insert
 from sqlalchemy.orm import Mapped, relationship
 from datetime import date, datetime
 
-from db_base import Base
+from .db_base import Base
 
 
 class Zregister(Base):
@@ -36,9 +36,9 @@ class Zregister(Base):
 
     id: Mapped[int] = Column(Integer(), primary_key=True, autoincrement=True)
     year: Mapped[int] = Column(Integer(), nullable=True)
-    idUsers: Mapped[int] = Column(Integer(), ForeignKey("users.id"))
-    idCourses: Mapped[int] = Column(Integer(), ForeignKey("courses.id"))
-    idPlaces: Mapped[int] = Column(Integer(), ForeignKey("places.id"))
+    idUsers: Mapped[int] = Column(ForeignKey("users.id"))
+    idCourses: Mapped[int] = Column(ForeignKey("courses.id"))
+    idPlaces: Mapped[int] = Column(ForeignKey("places.id"))
     sertificate: Mapped[str] = Column(String(20), nullable=True)
     fam: Mapped[str] = Column(String(20), nullable=True)
     ima: Mapped[str] = Column(String(20), nullable=True)

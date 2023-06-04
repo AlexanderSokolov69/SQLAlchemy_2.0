@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+{% from 'bootstrap4/utils.html' import render_messages %}
+<head>
+    <meta charset="UTF-8">
+    <title>Кубышка 4.0 (в разработке)</title>
+    {{ bootstrap.load_css() }}
+</head>
+<body>
+<h1>
+    <a style="color: #ff0000">{{message}}</a>
+</h1>
+{{ bootstrap.load_js() }}
+{{ render_messages() }}
+</body>
+</html>

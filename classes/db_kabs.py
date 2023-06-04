@@ -3,7 +3,7 @@ from sqlalchemy import Date, insert
 from sqlalchemy.orm import Mapped, relationship
 from datetime import date, datetime
 
-from db_base import Base
+from .db_base import Base
 
 
 class Kabs(Base):

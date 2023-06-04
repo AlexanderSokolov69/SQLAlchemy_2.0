@@ -2,9 +2,9 @@ from sqlalchemy import text, MetaData, Table, Column, Select, Integer, String, F
 from sqlalchemy import Date, insert
 from sqlalchemy.orm import Mapped, relationship
 from datetime import date
-from datein import DateIn
+from .datein import DateIn
 
-from db_base import Base
+from .db_base import Base
 
 
 class Users(Base):

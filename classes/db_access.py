@@ -3,7 +3,7 @@ from sqlalchemy import Date, insert
 from sqlalchemy.orm import Mapped, relationship
 from datetime import date, datetime
 
-from db_base import Base
+from .db_base import Base
 
 
 class Access(Base):
@@ -17,9 +17,9 @@ class Access(Base):
                }
 
     id: Mapped[int] = Column(Integer(), primary_key=True, autoincrement=True)
-    idUser: Mapped[int] = Column(Integer(), ForeignKey("users.id"))
+    idUser: Mapped[int] = Column(ForeignKey("users.id"))
     datetime: Mapped[datetime] = Column(String(300), nullable=True)
-    idRole: Mapped[int] = Column(Integer(), ForeignKey("roles.id"))
+    idRole: Mapped[int] = Column(ForeignKey("roles.id"))
 
     users = relationship("Users", back_populates="access")
     roles = relationship("Roles", back_populates="access")

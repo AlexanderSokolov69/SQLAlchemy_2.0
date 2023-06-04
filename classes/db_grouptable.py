@@ -3,7 +3,7 @@ from sqlalchemy import Date, insert
 from sqlalchemy.orm import Mapped, relationship
 from datetime import date
 
-from db_base import Base
+from .db_base import Base
 
 
 class GroupTable(Base):
@@ -16,8 +16,8 @@ class GroupTable(Base):
                'comment': 'Доп. информация'
                }
     id: Mapped[int] = Column(Integer(), primary_key=True, autoincrement=True)
-    idGroups: Mapped[int] = Column(Integer(), ForeignKey("groups.id"))
-    idUsers: Mapped[int] = Column(Integer(), ForeignKey("users.id"))
+    idGroups: Mapped[int] = Column(ForeignKey("groups.id"))
+    idUsers: Mapped[int] = Column(ForeignKey("users.id"))
     comment: Mapped[str] = Column(String(200), nullable=True)
     best: Mapped[str] = Column(String(16), nullable=True)
 
