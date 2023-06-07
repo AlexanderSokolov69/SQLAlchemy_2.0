@@ -5,7 +5,7 @@ from classes import *
 import sys
 import sqlalchemy
 
-from flask import Flask
+from flask import Flask, g
 from flask import render_template
 from flask_bootstrap import Bootstrap5
 
@@ -31,10 +31,11 @@ sys.excepthook = my_exception_hook
 with open("config_srv.json", "r", encoding="utf-8") as f:
     config_srv = json.load(f)
 
-session = init_db(config_srv.get("connect_str"))
+session = init_db(config_srv.get("connect_str"), echo=bool(config_srv.get("debug")=='1'))
 app = Flask(__name__)
 app.config['SECRET_KEY'] = config_srv.get("secret_key")
 bootstrap = Bootstrap5(app)
+
 
 # --------------   ОБРАБОТЧИКИ   ---------------
 
@@ -59,13 +60,11 @@ def base():
 def table_view():
     result = session.execute(
         select(Users)
-    ).all()
+    ).scalars()
     return render_template("table_view.html", table=result)
 # ----------------------------------------------
 
 
 if __name__ == '__main__':
     # app.run(debug=True)
-    app.run(host=config_srv.get("host"), port=int(config_srv.get("port")), debug=bool(config_srv.get("debug")))
-
-
+    app.run(host=config_srv.get("host"), port=int(config_srv.get("port")), debug=bool(config_srv.get("debug")=='1'))

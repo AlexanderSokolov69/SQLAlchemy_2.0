@@ -1,15 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Кубышка 4.0 (в разработке)</title>
-    {{ bootstrap.load_css() }}
-</head>
-<body>
+{% extends "base.html" %}
 
-<h1>
-    В РАЗРАБОТКЕ...
-</h1>
-{{ bootstrap.load_js() }}
-</body>
-</html>
+{% block header00 %}Расписание занятий{% endblock %}
+
+{% block mainpad %}
+<table border="1">
+<tr>
+    <th>ID</th>
+    <th>Ф.И.О.</th>
+    <th>Д.рожд.</th>
+    <th>Телефон</th>
+    <th>Е-мейл</th>
+    <th>ПФДО</th>
+    <th>Публ.</th>
+
+</tr>
+    {% for rec in table: %}
+<tr>
+    <td>{{ rec.id }}</td>
+    <td>{{ rec.name }}</td>
+    <td>{{ rec.birthday }}</td>
+    <td>{{ rec.phone }}</td>
+    <td>{{ rec.email }}</td>
+    <td>{{ rec.sertificate }}</td>
+    <td>{{ "Да" if rec.navigator == "1" else "Нет" }}</td>
+</tr>
+{% endfor %}
+    </table>
+{% endblock %}

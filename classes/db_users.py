@@ -40,7 +40,7 @@ class Users(Base):
     idPlaces: Mapped[int] = Column(Integer)
     comment: Mapped[str] = Column(String(200), nullable=True)
     sertificate: Mapped[str] = Column(String(16), nullable=True)
-    navigator: Mapped[bool] = Column(Boolean(), nullable=True)
+    navigator: Mapped[str] = Column(String(1), nullable=True)
     passwd: Mapped[str] = Column(BLOB(400))
     winlogin: Mapped[str] = Column(String(30), nullable=True)
 
