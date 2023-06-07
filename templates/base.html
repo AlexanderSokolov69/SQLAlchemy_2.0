@@ -12,8 +12,9 @@
 
 <nav class="navbar navbar-expand-lg fixed-top">
     <a class="navbar-brand" href="https://it-cube43.ru">IT-Куб. Белая Холуница</a>
-            {% block header00 %}{% endblock %}
-
+    <div class="nav-main-header">
+        {% block header00 %}{% endblock %}
+    </div>
     <button class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,19 +25,19 @@
         <ul class="navbar-nav mr-4">
 
             <li class="nav-item">
-                <a class="nav-link" href="#1">About</a>
+                <a class="nav-link" href="/base">Журналы</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="#2">Portfolio</a>
+                <a class="nav-link " href="/">Расписание</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="#3">Team</a>
+                <a class="nav-link " href="/base">Учебные группы</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="#4">Post</a>
+                <a class="nav-link " href="/">Статистика</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="#5">Contact</a>
+                <a class="nav-link " href="/base">Заявки в Куб</a>
             </li>
         </ul>
     </div>
@@ -45,13 +46,13 @@
     <div class="landing-page   container">
         <div class="row">
             <div class="left-pad col col-md-3 col-xs-12">
-            {% block leftpad %}{% endblock %}
+                {% block leftpad %}{% endblock %}
 
             </div>
             <div class="main-pad col-md-9 col-xs-12">
                 <div class="main-pad">
-            {% block mainpad %}{% endblock %}
-                    </div>
+                    {% block mainpad %}{% endblock %}
+                </div>
 
             </div>
         </div>
@@ -123,6 +124,7 @@
             }
         }
     });
+
 
 
 

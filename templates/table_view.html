@@ -3,27 +3,34 @@
 {% block header00 %}Расписание занятий{% endblock %}
 
 {% block mainpad %}
-<table border="1">
-<tr>
-    <th>ID</th>
-    <th>Ф.И.О.</th>
-    <th>Д.рожд.</th>
-    <th>Телефон</th>
-    <th>Е-мейл</th>
-    <th>ПФДО</th>
-    <th>Публ.</th>
+<div class="table-responsive">
+    <table class="table table-striped table-condensed table-bordered">
+        <thead>
+        <tr>
+            <th class="header-table" scope="col">ID</th>
+            <th class="header-table" scope="col">Ф.И.О.</th>
+            <th class="header-table" scope="col">Д.рожд.</th>
+            <th class="header-table" scope="col">Телефон</th>
+            <th class="header-table" scope="col">Е-мейл</th>
+            <th class="header-table" scope="col">ПФДО</th>
+            <th class="header-table" scope="col">Публ.</th>
 
-</tr>
-    {% for rec in table: %}
-<tr>
-    <td>{{ rec.id }}</td>
-    <td>{{ rec.name }}</td>
-    <td>{{ rec.birthday }}</td>
-    <td>{{ rec.phone }}</td>
-    <td>{{ rec.email }}</td>
-    <td>{{ rec.sertificate }}</td>
-    <td>{{ "Да" if rec.navigator == "1" else "Нет" }}</td>
-</tr>
-{% endfor %}
+        </tr>
+        </thead>
+        <tbody>
+        {% for rec in table: %}
+        <tr>
+            <td class="filterable-cell">{{ rec.id }}</td>
+            <td class="filterable-cell">{{ rec.name }}</td>
+            <td class="filterable-cell">{{ rec.birthday }}</td>
+            <td class="filterable-cell">{{ rec.phone }}</td>
+            <td class="filterable-cell">{{ rec.email }}</td>
+            <td class="filterable-cell">{{ rec.sertificate }}</td>
+            <td class="filterable-cell">{{ "Да" if rec.navigator == "1" else "Нет" }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
     </table>
+</div>
 {% endblock %}
+

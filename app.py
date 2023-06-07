@@ -61,6 +61,7 @@ def table_view():
     result = session.execute(
         select(Users)
     ).scalars()
+
     return render_template("table_view.html", table=result)
 # ----------------------------------------------
 

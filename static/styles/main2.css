@@ -99,19 +99,4 @@ color: #ff9999;
 
  }
 
- .header-table{
-        position:sticky;
-        top: 0;
-        background-color: #ccffffff;
 
-    }
-
-thead{
- text-align: center;
-}
-
-.nav-main-header{
- font-size: 48px;
- padding-left: 40px;
- padding-bottom: 10px;
-}
