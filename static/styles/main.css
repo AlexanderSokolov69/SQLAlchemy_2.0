@@ -107,11 +107,25 @@ color: #ff9999;
     }
 
 thead{
- text-align: center;
-}
+ /*text-align: center;
+       position: relative;
+      z-index: 0;
+      margin-top: 50px;
+        position: fixed;
+*/
+      top: 50px;
+      width: 100%;
+      height: 50px;
+      line-height: 3em;
+      background: #eff;
+
+ }
+table-responsive th {
+ background: #fee;
+ }
 
 .nav-main-header{
- font-size: 48px;
+ font-size: 32px;
  padding-left: 40px;
  padding-bottom: 10px;
 }

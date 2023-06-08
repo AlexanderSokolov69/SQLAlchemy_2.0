@@ -1,8 +1,8 @@
 {
   "db": "DSN=it-cube64",
   "secret_key": "ds rw3r3,3,e3223l3c l2c3c 2l3el23ec23l23 c23c l23ejcl2",
-  "connect_str": "sqlite+pysqlite:///db/database_J2023.db",
-  "mssql-connect_str": "mssql+pyodbc://sa:Prestige2011!@172.16.1.12:1433/Journal4303?driver=ODBC+Driver+17+for+SQL+Server",
+  "sqlite-connect_str": "sqlite+pysqlite:///db/database_J2023.db",
+  "connect_str": "mssql+pyodbc://sa:Prestige2011!@172.16.1.12:1433/Journal4303?driver=ODBC+Driver+17+for+SQL+Server",
   "debug": "1",
   "host": "127.0.0.1",
   "port": "5050",

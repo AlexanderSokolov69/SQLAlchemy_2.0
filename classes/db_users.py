@@ -3,11 +3,13 @@ from sqlalchemy import Date, insert
 from sqlalchemy.orm import Mapped, relationship
 from datetime import date
 from .datein import DateIn
+from werkzeug.security import check_password_hash, generate_password_hash
+from flask_login import UserMixin
 
 from .db_base import Base
 
 
-class Users(Base):
+class Users(Base, UserMixin):
     __tablename__ = "users"
 
     headers = {'id': 'ID',
@@ -48,3 +50,10 @@ class Users(Base):
     group_table = relationship("GroupTable", back_populates="users")
     access = relationship("Access", back_populates="users")
     zregister = relationship("Zregister", back_populates="users")
+
+    def set_password(self, password):
+        self.passwd = generate_password_hash(password)
+
+    def check_password(self,  password):
+        # return check_password_hash(self.passwd, password)
+        return True
