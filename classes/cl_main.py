@@ -2,10 +2,10 @@ import pyodbc
 from datetime import date
 # SQLAlchemy import
 from sqlalchemy import create_engine
-from sqlalchemy import text, MetaData, Table, Column, Select, Integer, String, ForeignKey, BLOB, Boolean
+from sqlalchemy import text, MetaData, Table, Column, Integer, Select, String, ForeignKey, BLOB, Boolean
 from sqlalchemy import Date, insert
 from sqlalchemy.orm import Session, registry, sessionmaker
-from sqlalchemy.orm import DeclarativeBase, Mapped
+from sqlalchemy.orm import Mapped
 from sqlalchemy import select
 # Flask import
 from flask import flash

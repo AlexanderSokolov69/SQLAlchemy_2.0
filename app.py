@@ -45,7 +45,9 @@ login_manager.login_view = 'login'
 @login_manager.user_loader
 def load_user(user_id):
     print(user_id)
-    return session.query(Users).get(user_id)
+    user = session.query(Users).get(user_id)
+    print(user.passwd)
+    return user
 
 
 # --------------   ОБРАБОТЧИКИ   ---------------
