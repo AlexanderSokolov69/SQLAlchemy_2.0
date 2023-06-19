@@ -39,5 +39,7 @@ session = init_db(config_srv.get("connect_str"), echo=bool(config_srv.get("debug
 
 
 if __name__ == '__main__':
-    result = session.query(Users).where(func.trim(Users.login)=='sa').first()
-    print(result.check_password('030669'))
+    result = session.query(Users).all()
+    for rec in result:
+        print(rec)
+        
