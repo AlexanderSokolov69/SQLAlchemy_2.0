@@ -4,6 +4,7 @@ from classes import *
 
 import sys
 import sqlalchemy
+from sqlalchemy import func
 
 from flask import Flask, g, request, redirect, url_for
 from flask import render_template
@@ -39,29 +40,33 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = config_srv.get("secret_key")
 bootstrap = Bootstrap5(app)
 login_manager = LoginManager(app)
-login_manager.login_view = 'login'
+login_manager.login_view = 'login_f'
 
 
 @login_manager.user_loader
 def load_user(user_id):
     print(user_id)
-    user = session.query(Users).get(user_id)
-    print(user.passwd)
+    user = session.get(Users, user_id)  #  .query(Users).get(user_id)
+    print('load user', user.passwd)
     return user
 
 
 # --------------   ОБРАБОТЧИКИ   ---------------
-@app.route('/login/', methods=['post', 'get'])
-def login():
+@app.route('/login_m', methods=['post', 'get'])
+def login_f():
     form = LoginForm()
     if form.validate_on_submit():
-        user = session.query(Users).filter(Users.login == form.username.data).first()
+        user = session.query(Users).\
+            where(func.trim(Users.login)==form.username.data).\
+            first()
+        print(user)
         if user and user.check_password(form.password.data):
             login_user(user, remember=form.remember.data)
+            print('Идём в систему')
             return redirect(url_for('base'))
         print('form.username.data')
         flash("Invalid username/password", 'error')
-        return redirect(url_for('login'))
+        return redirect(url_for('login_f'))
     return render_template('login.html', form=form)
 
 @app.errorhandler(404)

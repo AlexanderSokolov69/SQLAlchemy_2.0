@@ -3,7 +3,7 @@ from datetime import date
 from flask_login import UserMixin
 from sqlalchemy import Column, Integer, String, BLOB
 from sqlalchemy.orm import Mapped, relationship
-from werkzeug.security import generate_password_hash
+from werkzeug.security import generate_password_hash, check_password_hash
 
 from .db_base import Base
 
@@ -55,9 +55,9 @@ class Users(Base, UserMixin):
         print(self.passwd)
     
     def check_password(self, password):
-        # return check_password_hash(self.passwd, password)
+        ret = check_password_hash(self.passwd.strip(), password)
         print(self.passwd)
         psw = generate_password_hash(password)
-        print(type(psw))
+        print(f'Контроль пароля: {ret}')
         print(psw)
-        return True
+        return ret

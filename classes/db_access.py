@@ -19,6 +19,7 @@ class Access(Base):
     id: Mapped[int] = Column(Integer(), primary_key=True, autoincrement=True)
     idUser: Mapped[int] = Column(ForeignKey("users.id"))
     datetime: Mapped[datetime] = Column(String(300), nullable=True)
+    sel: Mapped[str] = Column(String(400), nullable=True)
     idRole: Mapped[int] = Column(ForeignKey("roles.id"))
 
     users = relationship("Users", back_populates="access")
