@@ -42,7 +42,7 @@ class Users(Base, UserMixin):
     comment: Mapped[str] = Column(String(200), nullable=True)
     sertificate: Mapped[str] = Column(String(16), nullable=True)
     navigator: Mapped[str] = Column(String(1), nullable=True)
-    passwd: Mapped[str] = Column(BLOB(400))
+    passwd: Mapped[str] = Column(String(400), nullable=True)
     winlogin: Mapped[str] = Column(String(30), nullable=True)
     
     groups = relationship("Groups", back_populates="users")

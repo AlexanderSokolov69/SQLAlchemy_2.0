@@ -1,5 +1,6 @@
 import os
 import json
+from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy import func
 from classes import *
 
@@ -39,7 +40,19 @@ session = init_db(config_srv.get("connect_str"), echo=bool(config_srv.get("debug
 
 
 if __name__ == '__main__':
-    result = session.query(Users).all()
-    for rec in result:
-        print(rec)
+    with session as s:
+        users = s.query(Users).all()
+        for user in users:
+            if len(user.login.strip()) > 0:
+                if user.login.strip() == 'sa':
+                    psw = '030669'
+                else:
+                    psw = user.login.upper()
+                user.passwd = generate_password_hash(psw)
+                print(user.login.strip(), '\t', user.passwd)
+        s.commit()
+        # psw = 'MOA'
+        # user.passwd = generate_password_hash(psw)
+        # s.commit()
+        # print(user)
         
